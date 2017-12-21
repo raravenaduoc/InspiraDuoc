@@ -7,6 +7,7 @@ package vista;
 
 import java.sql.PreparedStatement;
 import modelo.Sql;
+import java.sql.Statement;
 
 /**
  *
@@ -20,7 +21,7 @@ public class Consultas extends javax.swing.JFrame {
     public Consultas() {
         initComponents();
     }
-    Sql conectara = new Sql();
+    Sql conectar = new Sql();
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -121,16 +122,21 @@ public class Consultas extends javax.swing.JFrame {
         int codigo = 60002;
         int precio = 8890;
         int id_cat = 2;
+        String formato = "N";
+        String nombre = "Nombre";
         
         try{
-                PreparedStatement pst = conectara.prepareStatement("INSERT INTO tallerxx.pelicula(codigo,precio,id_categoria,formato4k,nombre) VALUES (?,?,?,?,?)");
-                pst.setInt(1, codigo);
-                pst.setInt(1, precio);
-                pst.setInt(1, id_cat);
-                pst.setString(4, "N");
-                pst.setString(5, "Prueba de Pelicula");
+                PreparedStatement pstm;
+            pstm = conectar.prepareStatement("INSERT INTO tallerxx.pelicula(codigo,precio,id_categoria,formato4k,nombre) VALUES (" + codigo + "," + precio + "," + id_cat + "," + formato + "," + nombre +")");
+                //pstm.setInt(1, codigo);
+                //pstm.setInt(1, precio);
+                //pstm.setInt(1, id_cat);
+                //pstm.setString(4, "N");
+                //pstm.setString(5, "Prueba de Pelicula");
       
-                pst.executeUpdate();
+                pstm.executeUpdate();
+                pstm.close();
+                //return true;
         }
         catch (Exception e) {
             System.out.print(e.getMessage());

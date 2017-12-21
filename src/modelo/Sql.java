@@ -17,7 +17,7 @@ public class Sql {
         return conectar;
     }
 
-    public PreparedStatement prepareStatement(String insert_into_tallerxxpeliculacodigoprecioi) {
+    public PreparedStatement prepareStatement(String string) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
