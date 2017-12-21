@@ -15,6 +15,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 import modelo.Registro;
 import javax.swing.JOptionPane;
 import vista.Agregar;
+import vista.Consultas;
 import vista.Videoclub;
 import vista.Eliminar;
 import vista.Mostrar;
@@ -29,6 +30,7 @@ public class Controlador implements ActionListener,MouseListener {
     public static Agregar interfazagregar = new Agregar();
     public static Mostrar interfazmostrar = new Mostrar();
     public static Eliminar interfazeliminar = new Eliminar();
+    public static Consultas interfazconsultas = new Consultas();
     
     //modelo
     private Registro modelo = new Registro();
@@ -38,6 +40,9 @@ public class Controlador implements ActionListener,MouseListener {
         boton_eliminar,
         boton_buscar,
         boton_modificar,
+        btnAgregaConsulta1,
+        btnAgregaConsulta2,
+        boton_limpiar,
     }
     
     public Controlador() {
@@ -62,12 +67,15 @@ public class Controlador implements ActionListener,MouseListener {
         //Escuchamos los botones
         interfazagregar.boton_guardar.setActionCommand( "boton_guardar" );
         interfazagregar.boton_guardar.addActionListener(this);
+        interfazagregar.boton_limpiar.setActionCommand( "boton_limpiar" );
+        interfazagregar.boton_limpiar.addActionListener(this);
         interfazeliminar.boton_eliminar.setActionCommand( "boton_eliminar" );
         interfazeliminar.boton_eliminar.addActionListener(this);
         interfazmostrar.boton_buscar.setActionCommand( "boton_buscar" );
         interfazmostrar.boton_buscar.addActionListener(this);
         interfazmostrar.boton_modificar.setActionCommand( "boton_modificar" );
         interfazmostrar.boton_modificar.addActionListener(this);
+        
         
         //Interactuar con la tabla
         interfazmostrar.tabla.addMouseListener(this);
@@ -77,6 +85,7 @@ public class Controlador implements ActionListener,MouseListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         switch ( Accion.valueOf( e.getActionCommand() ) ){
+            
             case boton_guardar:
                //GUARDAR NUEVA PELICULA              
                 //codigo
@@ -214,6 +223,14 @@ public class Controlador implements ActionListener,MouseListener {
                 interfazmostrar.tabla.setModel(this.modelo.mostrar());
               
             break;
+            case boton_limpiar:
+                interfazagregar.tf_codigo.setText(null);
+                interfazagregar.tf_nombre.setText(null);
+                interfazagregar.tf_precio.setText(null);
+                interfazagregar.cb_categoria.setSelectedItem("Categoría");
+                interfazagregar.tf_codigo.grabFocus();
+            break;
+            
         }  
     }
     

@@ -2,6 +2,7 @@ package modelo;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 
 public class Sql {
     Connection conectar=null;
@@ -14,5 +15,9 @@ public class Sql {
             System.out.println(e.getMessage());
         }
         return conectar;
+    }
+
+    public PreparedStatement prepareStatement(String insert_into_tallerxxpeliculacodigoprecioi) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
